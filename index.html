@@ -13,30 +13,30 @@
                 extend: {
                     colors: {
                         cinematic: {
-                            bg: '#0D0E12',
-                            surface: '#14161C',
-                            card: '#181A20',
-                            border: '#2A2D36',
-                            polaroid: '#1E2028'
+                            bg: '#0A0A0F',
+                            surface: '#14141C',
+                            card: '#14141C',
+                            border: '#2A2A35',
+                            polaroid: '#14141C'
                         },
                         cooking: {
-                            saffron: '#F59E0B',
-                            terracotta: '#EA580C',
-                            amber: '#D97706'
+                            saffron: '#E11D48',
+                            terracotta: '#BE123C',
+                            amber: '#FB7185'
                         },
                         travel: {
-                            sky: '#38BDF8',
-                            cyan: '#06B6D4',
-                            sunset: '#F43F5E'
+                            sky: '#E11D48',
+                            cyan: '#BE123C',
+                            sunset: '#FB7185'
                         },
                         music: {
-                            violet: '#A855F7',
-                            magenta: '#EC4899',
-                            neon: '#C084FC'
+                            violet: '#E11D48',
+                            magenta: '#FB7185',
+                            neon: '#FB7185'
                         },
                         friends: {
-                            gold: '#FBBF24',
-                            warm: '#FEF08A'
+                            gold: '#E11D48',
+                            warm: '#FB7185'
                         }
                     },
                     animation: {
@@ -67,15 +67,49 @@
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: #0D0E12; color: #F1F5F9; }
-        .film-grain { background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 0); background-size: 24px 24px; }
-        .ticket-stub { background: repeating-linear-gradient(90deg, #181A20, #181A20 15px, #14161C 15px, #14161C 30px); }
+        :root {
+            --bg: #0A0A0F;
+            --primary: #E11D48;
+            --primary-soft: #FB7185;
+            --dark: #14141C;
+            --text: #FFFFFF;
+            --text-muted: #A1A1AA;
+            --label: #A1A1AA;
+        }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: var(--bg); color: var(--text); }
+        [class*="text-slate-100"], [class*="text-slate-200"] { color: var(--text) !important; }
+        [class*="text-slate-300"] { color: var(--text-muted) !important; }
+        [class*="text-slate-400"] { color: var(--label) !important; }
+        nav [class*="text-slate-300"] { color: #E2E8F0 !important; }
+        [class*="bg-slate-950"], [class*="bg-slate-900"], [class*="bg-slate-800"],
+        [class*="bg-red-950"], [class*="bg-amber-950"], [class*="bg-sky-950"],
+        [class*="bg-purple-950"], [class*="bg-yellow-950"], [class*="bg-blue-950"],
+        [class*="bg-blue-900"], [class*="bg-indigo-950"], [class*="bg-rose-950"] {
+            background-color: var(--dark) !important;
+            background-image: none !important;
+        }
+        [class*="border-slate-800"], [class*="border-slate-700"] { border-color: #2A2A35 !important; }
+        [class*="text-teal-400"], [class*="text-red-400"], [class*="text-emerald-400"],
+        [class*="text-blue-"] { color: var(--primary) !important; }
+        [class*="border-purple-"], [class*="border-yellow-"], [class*="border-sky-"],
+        [class*="border-amber-"], [class*="border-emerald-"], [class*="border-blue-"] {
+            border-color: rgba(225, 29, 72, 0.3) !important;
+        }
+        ::selection { background: var(--primary); color: #FFFFFF; }
+        .name-gradient {
+            background: linear-gradient(90deg, #FFFFFF, var(--primary-soft));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent !important;
+        }
+        .profile-portrait { filter: drop-shadow(0 0 18px rgba(225, 29, 72, 0.28)); }
+        #skills span[class*="font-medium"] { color: #E5E7EB; }
         .custom-scrollbar::-webkit-scrollbar { width: 6px; }
-        .custom-scrollbar::-webkit-scrollbar-track { background: #14161C; }
-        .custom-scrollbar::-webkit-scrollbar-thumb { background: #2A2D36; border-radius: 9999px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: var(--dark); }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #404040; border-radius: 9999px; }
     </style>
 </head>
-<body class="bg-cinematic-bg text-slate-100 antialiased selection:bg-cooking-saffron selection:text-slate-900 film-grain min-h-screen">
+<body class="bg-cinematic-bg text-slate-100 antialiased selection:bg-rose-600 selection:text-white min-h-screen">
     <div id="root"></div>
 
     <script type="text/babel">
@@ -97,11 +131,11 @@
             const navLinks = ['About', 'Passions', 'Skills', 'Experience', 'Projects', 'Contact'];
 
             const passions = [
-                { id: 'movies', name: 'Movies', icon: 'fa-film', color: 'border-red-500 text-red-400 bg-red-950/40', glow: 'from-red-900/30' },
-                { id: 'cooking', name: 'Cooking', icon: 'fa-utensils', color: 'border-cooking-saffron text-cooking-saffron bg-amber-950/40', glow: 'from-amber-900/30' },
-                { id: 'travel', name: 'Travelling', icon: 'fa-plane-departure', color: 'border-travel-sky text-travel-sky bg-sky-950/40', glow: 'from-sky-900/30' },
-                { id: 'music', name: 'Music', icon: 'fa-music', color: 'border-music-violet text-music-violet bg-purple-950/40', glow: 'from-purple-900/30' },
-                { id: 'friends', name: 'Friends', icon: 'fa-user-group', color: 'border-friends-gold text-friends-gold bg-yellow-950/40', glow: 'from-yellow-900/30' }
+                { id: 'movies', name: 'Movies', icon: 'fa-film', color: 'border-slate-50 text-slate-900 bg-slate-50' },
+                { id: 'cooking', name: 'Cooking', icon: 'fa-utensils', color: 'border-slate-50 text-slate-900 bg-slate-50' },
+                { id: 'travel', name: 'Travelling', icon: 'fa-plane-departure', color: 'border-slate-50 text-slate-900 bg-slate-50' },
+                { id: 'music', name: 'Music', icon: 'fa-music', color: 'border-slate-50 text-slate-900 bg-slate-50' },
+                { id: 'friends', name: 'Friends', icon: 'fa-user-group', color: 'border-slate-50 text-slate-900 bg-slate-50' }
             ];
 
             const projects = [
@@ -111,8 +145,8 @@
                     tagline: 'Fintech SME Banking Interface',
                     genre: 'Fintech / Enterprise UI',
                     duration: 'April 2024 – Sep 2026',
-                    posterBg: 'from-blue-900/80 via-indigo-950 to-cinematic-card',
-                    badgeColor: 'bg-blue-500/20 text-blue-400 border-blue-500/30',
+                    posterBg: 'from-neutral-900 via-black to-neutral-900',
+                    badgeColor: 'bg-blue-950/60 text-blue-300 border-blue-500/30',
                     ingredients: ['Next.js', 'React.js', 'TypeScript', 'Kendo React Grid', 'Tailwind CSS', 'Redux Toolkit', 'REST APIs'],
                     prepTime: '2.5 Years (Contract)',
                     problem: 'Simplifying complex multi-bank SME onboarding and financial management workflows into an intuitive customer & admin portal.',
@@ -125,8 +159,8 @@
                     tagline: 'Industrial AI ChatBot & Assistant',
                     genre: 'Artificial Intelligence / Auth',
                     duration: 'Ongoing',
-                    posterBg: 'from-purple-900/80 via-slate-950 to-cinematic-card',
-                    badgeColor: 'bg-purple-500/20 text-purple-400 border-purple-500/30',
+                    posterBg: 'from-neutral-900 via-black to-neutral-900',
+                    badgeColor: 'bg-blue-950/60 text-blue-300 border-blue-500/30',
                     ingredients: ['Next.js', 'Tailwind CSS', 'Keycloak (JWT)', 'Axios', 'Redux Toolkit', 'Jest'],
                     prepTime: 'Ongoing Production Support',
                     problem: 'Building an enterprise-grade AI chatbot platform requiring secure JWT authentication and real-time product querying.',
@@ -137,16 +171,6 @@
 
             return (
                 <div className="min-h-screen flex flex-col relative overflow-x-hidden">
-                    {/* Background Dynamic Ambient Lighting Overlay */}
-                    <div className={`fixed inset-0 pointer-events-none transition-all duration-700 z-0 bg-gradient-to-b ${
-                        activePassion === 'movies' ? 'from-red-950/20 via-cinematic-bg to-cinematic-bg' :
-                        activePassion === 'cooking' ? 'from-amber-950/25 via-cinematic-bg to-cinematic-bg' :
-                        activePassion === 'travel' ? 'from-sky-950/30 via-purple-950/20 to-cinematic-bg' :
-                        activePassion === 'music' ? 'from-purple-950/30 via-pink-950/20 to-cinematic-bg' :
-                        activePassion === 'friends' ? 'from-yellow-950/20 via-cinematic-bg to-cinematic-bg' :
-                        'from-slate-900/30 via-cinematic-bg to-cinematic-bg'
-                    }`}></div>
-
                     {/* Navigation Bar */}
                     <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
                         isScrolled ? 'bg-cinematic-bg/95 backdrop-blur-md border-b border-cinematic-border shadow-xl py-3.5' : 'bg-transparent py-5'
@@ -201,7 +225,7 @@
                                     onClick={() => setActivePassion('all')}
                                     className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all border ${
                                         activePassion === 'all' 
-                                            ? 'bg-slate-100 text-slate-900 border-slate-100 shadow-lg' 
+                                            ? 'bg-slate-50 text-slate-900 border-slate-50 shadow-lg'
                                             : 'bg-cinematic-card text-slate-400 border-cinematic-border hover:border-slate-500'
                                     }`}
                                 >
@@ -227,32 +251,11 @@
                                 {/* Left Column: Profile Avatar with Passion Mode Overlays */}
                                 <div className="lg:col-span-5 flex justify-center order-1 lg:order-1">
                                     <div className="relative max-w-sm w-full">
-                                        {/* Dynamic Glow Ring based on active passion */}
-                                        <div className={`absolute -inset-1.5 rounded-3xl blur-xl opacity-60 transition-all duration-500 ${
-                                            activePassion === 'movies' ? 'bg-gradient-to-r from-red-600 to-amber-600' :
-                                            activePassion === 'cooking' ? 'bg-gradient-to-r from-cooking-saffron to-cooking-terracotta' :
-                                            activePassion === 'travel' ? 'bg-gradient-to-r from-travel-sky to-travel-cyan' :
-                                            activePassion === 'music' ? 'bg-gradient-to-r from-music-violet to-music-magenta animate-pulse' :
-                                            activePassion === 'friends' ? 'bg-gradient-to-r from-friends-gold to-amber-500' :
-                                            'bg-gradient-to-r from-cooking-saffron via-music-violet to-travel-sky'
-                                        }`}></div>
-
-                                        <div className="relative bg-cinematic-card p-3 rounded-3xl border border-cinematic-border shadow-2xl overflow-hidden">
-                                            <img 
-                                                src="IMG-20260706-WA0015.jpg" 
-                                                alt="Gowtham Selvaraj" 
-                                                className="w-full h-auto aspect-square object-cover rounded-2xl filter brightness-95 contrast-105"
-                                            />
-                                            
-                                            {/* Status Badge */}
-                                            <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 bg-cinematic-surface/95 backdrop-blur-md px-4 py-2 rounded-full border border-cinematic-border shadow-xl flex items-center gap-2.5 whitespace-nowrap">
-                                                <span className="relative flex h-2.5 w-2.5">
-                                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                                                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
-                                                </span>
-                                                <span className="text-xs font-semibold text-slate-200">Full Stack & MERN Developer</span>
-                                            </div>
-                                        </div>
+                                        <img
+                                            src="gpt_gowtham_Image.png"
+                                            alt="Gowtham Selvaraj"
+                                            className="profile-portrait w-full h-auto rounded-2xl object-cover"
+                                        />
                                     </div>
                                 </div>
 
@@ -263,7 +266,7 @@
                                         <span>Engineering + Passion Synergy</span>
                                     </div>
 
-                                    <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-slate-100 mb-4 tracking-tight leading-tight">
+                                    <h1 className="name-gradient text-4xl sm:text-5xl md:text-6xl font-extrabold text-slate-100 mb-4 tracking-tight leading-tight">
                                         Gowtham Selvaraj.
                                     </h1>
                                     
